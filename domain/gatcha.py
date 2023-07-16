@@ -13,7 +13,7 @@ def weighted_gatcha():
     for name, weight in element:
         element_name.append(name)
         element_weight.append(int(weight))
-    result = random.choices(element_name, cum_weights=element_weight, k=1)
+    result = random.choices(element_name, weights=element_weight, k=1)
 
     return result
 
