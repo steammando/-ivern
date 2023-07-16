@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "ivern"
+version = "0.1.0"
+description = "ivern project(fake)"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.100.0"
+uvicorn = {extras = ["standard"], version = "^0.23.0"}
+oauth2client = "^4.1.3"
+gspread = "^5.10.0"
+pyopenssl = "^23.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
