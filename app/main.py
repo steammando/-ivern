@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from domain.gatcha import weighted_gatcha, rated_gatcha
+from .domain.gatcha import weighted_gatcha, rated_gatcha
 
 app = FastAPI()
 
