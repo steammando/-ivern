@@ -1,5 +1,9 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from .domain.gatcha import weighted_gatcha, rated_gatcha
+from .domain.chapter import chapter_start, chapter_clear, stage_start, stage_clear
+from app.db.models import chapter, stage, items
+import datetime
 
 app = FastAPI()
 
@@ -40,3 +44,46 @@ async def gatch_100():
     result.append(e)
     
     return result
+
+# chapter start api
+@app.post("/chapter/start/v1/{chapter_id}")
+async def chapter_start(chapter_id: int):
+    result = {}
+    result['chapter_id'] = chapter_id
+    result['created_at'] = datetime.datetime.utcnow()
+    result['updated_at'] = datetime.datetime.utcnow()
+    return result
+    # return chapter_start(int(chapter_id))
+
+# chapter clear api
+@app.post("/chapter/clear/v1/{chapter_id}")
+async def chapter_clear(chapter_id: int):
+    result = {}
+    result['chapter_id'] = chapter_id
+    result['created_at'] = datetime.datetime.utcnow()
+    result['updated_at'] = datetime.datetime.utcnow()
+    return result
+    # return chapter_clear(int(chapter_id))
+
+# stage start api
+@app.post("/stage/start/v1/{chapter_id}/{stage_id}")
+async def stage_start(stage_id: int, chapter_id: int):
+    result = {}
+    result['chapter_id'] = chapter_id
+    result['stage_id'] = stage_id
+    result['created_at'] = datetime.datetime.utcnow()
+    result['updated_at'] = datetime.datetime.utcnow()
+    return result
+    # return stage_start(int(chapter_id), int(stage_id))
+
+# stage clear api
+@app.post("/stage/clear/v1/{chapter_id}/{stage_id}/{coin}")
+async def stage_clear(stage_id: int, chapter_id: int, coin: int):
+    result = {}
+    result['chapter_id'] = chapter_id
+    result['stage_id'] = stage_id
+    result['created_at'] = datetime.datetime.utcnow()
+    result['updated_at'] = datetime.datetime.utcnow()
+    result['coin'] = coin
+    return result
+    # return stage_clear(int(chapter_id), int(stage_id))
