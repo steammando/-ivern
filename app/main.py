@@ -2,8 +2,10 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from .domain.gatcha import weighted_gatcha, rated_gatcha
 from .domain.chapter import chapter_start, chapter_clear, stage_start, stage_clear
-from app.db.models import chapter, stage, items
+from core.sheet import open_sheet, read_all_sheet
+from app.db.models import chapter, stage, items, sheet
 import datetime
+from typing import List, Optional
 
 app = FastAPI()
 
@@ -87,3 +89,11 @@ async def stage_clear(stage_id: int, chapter_id: int, coin: int):
     result['coin'] = coin
     return result
     # return stage_clear(int(chapter_id), int(stage_id))
+
+@app.get("/sheet/v1/")
+async def get_sheet(sheet_name: Optional[str] = None):
+    if sheet_name:
+        result = open_sheet(sheet_name)
+    else:
+        result = read_all_sheet()
+    return result

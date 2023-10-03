@@ -1,17 +1,26 @@
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
+import re
 
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
+# credentials = ServiceAccountCredentials.from_json_keyfile_name(
+#         '/Users/jin/git/ivern/ivern-393003-be3c49a9d796.json', scope) # local test key
 credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        '/Users/jin/git/ivern/ivern-393003-be3c49a9d796.json', scope) # 나중에 서버키 위치로 변경해야함
+        '/home/ubuntu/ivern/google_sheet_key.json', scope)
 gc = gspread.authorize(credentials)
 
-gc1 = gc.open("ivern project").worksheet('parts_gatcha')
-gc2 = gc1.get_all_values()
-
-# @TODO 현재 시트의 모든 내용을 불러오는데 카테고리별로 불러올 수 있도록 변경 필요
 def open_sheet(sheet_name):
+    result = {}
     sheet = gc.open("ivern project").worksheet(sheet_name)
-    result = sheet.get_all_values()
+    result[sheet_name] = sheet.get('A2:Z')
+    return(result)
+
+def read_all_sheet():
+    result = {}
+    sheet = gc.open("ivern project")
+    sheet_list = sheet.worksheets()
+    for s in sheet_list:
+        values = s.get('A2:Z')
+        result[s.title] = values
     return(result)
