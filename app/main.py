@@ -3,7 +3,6 @@ from pydantic import BaseModel
 from .domain.gatcha import element_gatcha, parts_gatcha, gatcha_n_times
 from .domain.chapter import chapter_start, chapter_clear, stage_start, stage_clear
 from core.sheet import open_sheet, read_all_sheet
-from app.db.models import chapter, stage, items, sheet
 import datetime
 from typing import List, Optional
 
@@ -115,4 +114,15 @@ async def get_sheet(sheet_name: Optional[str] = None):
         result = open_sheet(sheet_name)
     else:
         result = read_all_sheet()
+    return result
+
+@app.get("/get/reward/v1", tags=['item'])
+async def get_reward():
+    result = {}
+    # reward = open_sheet('items')[0]
+    reward = 'heart'
+    result['item'] = reward
+    result['cnt'] = 3
+
+    result['current_item'] = {"heart":10, "continue":1}
     return result
