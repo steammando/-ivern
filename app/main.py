@@ -9,10 +9,10 @@ from typing import List, Optional
 
 
 tags_metadata = [
-    {"name": "gatcha", "description": "Gatcha APIs"},
-    {"name": "item", "description": "Item APIs"},
-    {"name": "chapter", "description": "Stage & Chapter APIs"},
-    {"name": "operation", "description": "Operation APIs"},
+    {"name": "gatcha", "description": "가챠 메소드"},
+    {"name": "chapter", "description": "챕터와 스테이지 관련 메소드"},
+    {"name": "item", "description": "아이템 및 보상관련 메소드(@todo payments)"},
+    {"name": "operation", "description": "내부 동작용 메소드"},
     {"name": "test", "description": "Test APIs"},
 ]
 
