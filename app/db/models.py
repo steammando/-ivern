@@ -17,6 +17,4 @@ class stage(BaseModel):
 # 재화 관련 DB
 class items(BaseModel):
     coin: int
-
-class sheet(BaseModel):
-    sheet: Optional[str] = None
+    heart: int
