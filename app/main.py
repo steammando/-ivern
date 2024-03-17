@@ -128,7 +128,7 @@ async def get_reward():
     return result
 
 @app.get("/get/stat/v1/{user_id}", tags=['stat'])
-async def get_stat(user_id):
+async def get_stat(user_id: int):
     result = {}
     # reward = open_sheet('items')[0]
     reward = 'heart'
@@ -142,7 +142,7 @@ async def get_stat(user_id):
     return result
 
 @app.post("/update/stat/v1/{user_id}/{stat}", tags=['stat'])
-async def update_stat(user_id, stat):
+async def update_stat(user_id: int, stat: str):
     result = {}
     # reward = open_sheet('items')[0]
     reward = 'heart'
@@ -156,7 +156,7 @@ async def update_stat(user_id, stat):
     return result
 
 @app.post("/reset/stat/v1/{user_id}", tags=['stat'])
-async def reset_stat(user_id):
+async def reset_stat(user_id: int):
     result = {}
     # reward = open_sheet('items')[0]
     reward = 'heart'
@@ -167,4 +167,12 @@ async def reset_stat(user_id):
     result['projectile_speed'] = 0
     result['projectile_scale'] = 0
 
+    return result
+
+@app.get("/login/{device_id}", tags=['login'])
+async def login(device_id: str):
+    result = {}
+    user_id = 1
+    result['user_id'] = 1
+    
     return result

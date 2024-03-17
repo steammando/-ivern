@@ -4,10 +4,10 @@ import re
 
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        '/Users/jin/git/ivern/ivern-393003-be3c49a9d796.json', scope) # local test key
 # credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        # '/home/ubuntu/ivern/google_sheet_key.json', scope)
+#         '/Users/jin/git/ivern/ivern-393003-be3c49a9d796.json', scope) # local test key
+credentials = ServiceAccountCredentials.from_json_keyfile_name(
+        '/home/ubuntu/ivern/google_sheet_key.json', scope)
 gc = gspread.authorize(credentials)
 
 def open_sheet(sheet_name):
