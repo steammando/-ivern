@@ -66,9 +66,10 @@ async def gatch_100():
     return result
 
 # chapter start api
-@app.post("/chapter/start/v1/{chapter_id}", tags=['chapter'])
-async def chapter_start(chapter_id: int):
+@app.post("/chapter/start/v1/{user_id}/{chapter_id}", tags=['chapter'])
+async def chapter_start(user_id: int, chapter_id: int):
     result = {}
+    result['user_id'] = user_id
     result['chapter_id'] = chapter_id
     result['created_at'] = datetime.datetime.utcnow()
     result['updated_at'] = datetime.datetime.utcnow()
@@ -76,9 +77,10 @@ async def chapter_start(chapter_id: int):
     # return chapter_start(int(chapter_id))
 
 # chapter clear api
-@app.post("/chapter/clear/v1/{chapter_id}", tags=['chapter'])
-async def chapter_clear(chapter_id: int):
+@app.post("/chapter/clear/v1/{user_id}/{chapter_id}", tags=['chapter'])
+async def chapter_clear(user_id: int, chapter_id: int):
     result = {}
+    result['user_id'] = user_id
     result['chapter_id'] = chapter_id
     result['created_at'] = datetime.datetime.utcnow()
     result['updated_at'] = datetime.datetime.utcnow()
@@ -86,9 +88,10 @@ async def chapter_clear(chapter_id: int):
     # return chapter_clear(int(chapter_id))
 
 # stage start api
-@app.post("/stage/start/v1/{chapter_id}/{stage_id}", tags=['chapter'])
-async def stage_start(stage_id: int, chapter_id: int):
+@app.post("/stage/start/v1/{user_id}/{chapter_id}/{stage_id}", tags=['chapter'])
+async def stage_start(user_id: int, stage_id: int, chapter_id: int):
     result = {}
+    result['user_id'] = user_id
     result['chapter_id'] = chapter_id
     result['stage_id'] = stage_id
     result['created_at'] = datetime.datetime.utcnow()
@@ -97,9 +100,10 @@ async def stage_start(stage_id: int, chapter_id: int):
     # return stage_start(int(chapter_id), int(stage_id))
 
 # stage clear api
-@app.post("/stage/clear/v1/{chapter_id}/{stage_id}/{coin}", tags=['chapter'])
-async def stage_clear(stage_id: int, chapter_id: int, coin: int):
+@app.post("/stage/clear/v1/{user_id}/{chapter_id}/{stage_id}/{coin}", tags=['chapter'])
+async def stage_clear(user_id: int,  stage_id: int, chapter_id: int, coin: int):
     result = {}
+    result['user_id'] = user_id
     result['chapter_id'] = chapter_id
     result['stage_id'] = stage_id
     result['created_at'] = datetime.datetime.utcnow()
@@ -116,11 +120,12 @@ async def get_sheet(sheet_name: Optional[str] = None):
         result = read_all_sheet()
     return result
 
-@app.get("/get/reward/v1", tags=['item'])
-async def get_reward():
+@app.get("/get/reward/v1/{user_id}", tags=['item'])
+async def get_reward(user_id: int):
     result = {}
     # reward = open_sheet('items')[0]
     reward = 'heart'
+    result['user_id'] = user_id
     result['item'] = reward
     result['cnt'] = 3
 
@@ -132,6 +137,7 @@ async def get_stat(user_id: int):
     result = {}
     # reward = open_sheet('items')[0]
     reward = 'heart'
+    result['user_id'] = user_id
     result['health'] = 0
     result['attack_count'] = 1
     result['attack_speed'] = 2
@@ -146,6 +152,7 @@ async def update_stat(user_id: int, stat: str):
     result = {}
     # reward = open_sheet('items')[0]
     reward = 'heart'
+    result['user_id'] = user_id
     result['health'] = 1
     result['attack_count'] = 1
     result['attack_speed'] = 2
@@ -159,7 +166,8 @@ async def update_stat(user_id: int, stat: str):
 async def reset_stat(user_id: int):
     result = {}
     # reward = open_sheet('items')[0]
-    reward = 'heart'
+    # reward = 'heart'
+    result['user_id'] = user_id
     result['health'] = 0
     result['attack_count'] = 0
     result['attack_speed'] = 0
