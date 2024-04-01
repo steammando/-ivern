@@ -112,6 +112,14 @@ async def stage_clear(user_id: int,  stage_id: int, chapter_id: int, coin: int):
     return result
     # return stage_clear(int(chapter_id), int(stage_id))
 
+@app.get("/get/stage/v1/{user_id}, tag=['stage']")
+async def get_stage(user_id: int):
+    result = []
+    result['user_id'] = user_id
+    result['current_chapter'] = 1
+    result['current_stage'] = 2
+    return result
+
 @app.get("/sheet/v1/", tags=['operation'])
 async def get_sheet(sheet_name: Optional[str] = None):
     if sheet_name:
