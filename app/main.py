@@ -112,7 +112,7 @@ async def stage_clear(user_id: int,  stage_id: int, chapter_id: int, coin: int):
     return result
     # return stage_clear(int(chapter_id), int(stage_id))
 
-@app.get("/get/stage/v1/{user_id}", tags=['stage'])
+@app.get("/get/stage/v1/{user_id}", tags=['chapter'])
 async def get_stage(user_id: int):
     result = []
     result['user_id'] = user_id
